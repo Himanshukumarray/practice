@@ -127,9 +127,6 @@ const Contact = () => {
                     <button type="submit" disabled={isSubmitting} className={`w-full py-4 bg-yellow-500 text-white rounded-xl font-bold ${isSubmitting ? 'opacity-50' : 'hover:bg-yellow-600'}`}>{isSubmitting ? 'Booking...' : 'Confirm Booking'}</button>
                 </form>
 
-                
-
-
             </div>
         </section>
     );

@@ -3,7 +3,6 @@ import BannerImage from '../assets/SalonBanner.jpg'
 import { Link } from 'react-scroll';
 import { FaSpa, FaCalendarAlt } from "react-icons/fa";
 
-
 const Banner = () => {
     return (
         <div id='home' className='min-h-[80vh] md:min-h-[90vh] flex items-center justify-center text-center px-4 relative overflow-hidden'
