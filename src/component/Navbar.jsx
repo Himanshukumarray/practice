@@ -178,17 +178,17 @@ const Navbar = () => {
                                         </div>
                                         {/* Employee Details */}
                                         {selectedEmployee && (
-                                                <div className="mt-4 p-4 border rounded bg-gray-100">
-                                                    <h3 className="text-lg font-bold">Employee Details</h3>
-                                                    <p><strong>Name:</strong> {selectedEmployee.employeeName}</p>
-                                                    <p><strong>Address:</strong> {selectedEmployee.address}</p>
-                                                    <p><strong>Account No:</strong> {selectedEmployee.accountNo}</p>
-                                                    <p><strong>IF:</strong> {selectedEmployee.accountNo}</p>
-                                                    <p><strong>ID:</strong> {selectedEmployee.id}</p>
-                                                    <p><strong>Phone:</strong> {selectedEmployee.phone}</p>
-                                                    <p><strong>Email:</strong> {selectedEmployee.email}</p>
-                                                </div>
-                                            )}
+                                            <div className="mt-4 p-4 border rounded bg-gray-100">
+                                                <h3 className="text-lg font-bold">Employee Details</h3>
+                                                <p><strong>Name:</strong> {selectedEmployee.employeeName}</p>
+                                                <p><strong>Address:</strong> {selectedEmployee.address}</p>
+                                                <p><strong>Account No:</strong> {selectedEmployee.accountNo}</p>
+                                                <p><strong>IF:</strong> {selectedEmployee.accountNo}</p>
+                                                <p><strong>ID:</strong> {selectedEmployee.id}</p>
+                                                <p><strong>Phone:</strong> {selectedEmployee.phone}</p>
+                                                <p><strong>Email:</strong> {selectedEmployee.email}</p>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
