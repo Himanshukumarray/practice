@@ -3,7 +3,7 @@ import { Link } from 'react-scroll';
 import { FiHome, FiUser, FiCalendar, FiX, FiMenu } from "react-icons/fi";
 import { GiScissors } from "react-icons/gi";
 import { IoIosNotifications } from "react-icons/io";
-import fetchEmployeeCount from './fetchEmployeeCount';
+import fetchEmployeeCount from './FetchEmployeeCount';
 
 const Navbar = () => {
     const [navShadow, setNavShadow] = useState(false);
