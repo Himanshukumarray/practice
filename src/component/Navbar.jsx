@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
-import { FiHome, FiUser, FiCalendar, FiX, FiMenu } from "react-icons/fi";
+// Import with aliases
+import { Link as ScrollLink } from 'react-scroll';  // Alias for react-scroll Link
+import { Link as RouterLink } from 'react-router-dom';  // Alias for react-router-dom Link
+import { FiHome, FiUser, FiCalendar, FiX, FiMenu, FiSettings } from "react-icons/fi";
 import { GiScissors } from "react-icons/gi";
 import { IoIosNotifications } from "react-icons/io";
 import fetchEmployeeCount from './FetchEmployeeCount';
@@ -68,7 +70,6 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Inline styles to override custom margin classes on mobile */}
             <style jsx>{`
                 @media (max-width: 768px) {
                     .ml-210 {
@@ -87,21 +88,19 @@ const Navbar = () => {
                         <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between relative">
                             {/* Logo */}
                             <div className="flex items-center">
-                                <Link
+                                <ScrollLink
                                     to="home"
-                                    spy={true}
-                                    smooth={true}
                                     className="flex items-center cursor-pointer text-gray-800 hover:text-pink-700 transition-all duration-300 relative group font-[poppins] font-medium text-base lg:text-lg">
                                     <span className="cursor-pointer text-2xl md:text-3xl font-bold 
                                     bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent font-[poppins] tracking-tighter">
                                         BeautySalon
                                     </span>
-                                </Link>
+                                </ScrollLink>
                             </div>
 
                             {/* CENTER DESKTOP MENU */}
                             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 lg:space-x-10">
-                                <Link
+                                <ScrollLink
                                     to="home"
                                     spy={true}
                                     smooth={true}
@@ -109,9 +108,9 @@ const Navbar = () => {
                                     <FiHome className="mr-1 lg:mr-2" />
                                     Home
                                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-pink-700 transition-all duration-300 group-hover:w-full"></span>
-                                </Link>
+                                </ScrollLink>
 
-                                <Link
+                                <ScrollLink
                                     to="about"
                                     spy={true}
                                     smooth={true}
@@ -119,9 +118,9 @@ const Navbar = () => {
                                     <FiUser className="mr-1 lg:mr-2" />
                                     About
                                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-pink-700 transition-all duration-300 group-hover:w-full"></span>
-                                </Link>
+                                </ScrollLink>
 
-                                <Link
+                                <ScrollLink
                                     to="services"
                                     spy={true}
                                     smooth={true}
@@ -129,9 +128,9 @@ const Navbar = () => {
                                     <GiScissors className="mr-1 lg:mr-2" />
                                     Services
                                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-pink-700 transition-all duration-300 group-hover:w-full"></span>
-                                </Link>
+                                </ScrollLink>
 
-                                <Link
+                                <ScrollLink
                                     to="alert"
                                     spy={true}
                                     smooth={true}
@@ -140,7 +139,7 @@ const Navbar = () => {
                                     Alert
                                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-pink-700 transition-all duration-300 group-hover:w-full"></span>
 
-                                </Link>
+                                </ScrollLink>
                             </div>
 
                             {/* Notification Icon */}
@@ -191,35 +190,36 @@ const Navbar = () => {
                                         )}
                                     </div>
                                 )}
-
                             </div>
-                            {/* Employee Details
-                            {selectedEmployee && (
-                                <div className="mt-4 p-4 border rounded bg-gray-100">
-                                    <h3 className="text-lg font-bold">Employee Details</h3>
-                                    <p><strong>Name:</strong> {selectedEmployee.employeeName}</p>
-                                    <p><strong>ID:</strong> {selectedEmployee.id}</p>
-                                    <p><strong>Position:</strong> {selectedEmployee.position}</p>
-                                    <p><strong>Email:</strong> {selectedEmployee.email}</p>
-                                </div>
-                            )} */}
 
                             {/* MOBILE MENU TOGGLE */}
-                            <div className="md:hidden">
-                                <button
-                                    onClick={() => setIsMenuOpen(true)}
-                                    className="text-gray-800 hover:text-pink-700 transition-colors duration-300"
-                                >
-                                    <FiMenu size={28} />
-                                </button>
+                            <div className="md:hidden">                                 <button
+                                onClick={() => setIsMenuOpen(true)}
+                                className="text-gray-800 hover:text-pink-700 transition-colors duration-300"
+                            >
+                                <FiMenu size={28} />
+                            </button>
                             </div>
 
                             <div className='flex items-center space-x-4'>
                                 <div className='hidden md:block'>
-                                    <Link to="contacts" spy={true} smooth={true} className='flex items-center bg-pink-400 hover:bg-pink-600 text-white py-2 lg:px-6 rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer font-[Poppins] font-semibold border border-pink-300 text-sm lg:text-base'>
+                                    <ScrollLink to="contacts" spy={true} smooth={true} className='flex items-center bg-pink-400 hover:bg-pink-600 text-white py-2 lg:px-6 rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer font-[Poppins] font-semibold border border-pink-300 text-sm lg:text-base'>
                                         <FiCalendar className='mr-1 lg:mr-2' />
                                         Book Now
-                                    </Link>
+                                    </ScrollLink>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center -mr-8">
+                                <div className="hidden md:block">
+                                    <RouterLink
+                                        to="/setting/new"
+                                        spy={true}
+                                        smooth={true}
+                                        className="group flex items-center rounded-xl hover:shadow-lg transition-all duration-300 cursor-pointer font-poppins font-semibold text-sm lg:text-base border border-pink-400"
+                                    >
+                                        <FiSettings className="text-4xl transition-all duration-300  group-hover:rotate-12" />
+                                    </RouterLink>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,7 @@ const Navbar = () => {
                         {/* Menu Container */}
                         <div className="bg-pink-100/90 border border-pink-300/20 rounded-xl shadow-2xl p-8 space-y-8 w-11/12 max-w-sm">
                             {/* Home Link */}
-                            <Link
+                            <ScrollLink
                                 to="home"
                                 spy={true}
                                 smooth={true}
@@ -249,9 +249,9 @@ const Navbar = () => {
                             >
                                 <FiHome className="mb-2 text-2xl" />
                                 Home
-                            </Link>
+                            </ScrollLink>
 
-                            <Link
+                            <ScrollLink
                                 to="about"
                                 spy={true}
                                 smooth={true}
@@ -260,9 +260,9 @@ const Navbar = () => {
                             >
                                 <FiUser className="mb-2 text-2xl" />
                                 About
-                            </Link>
+                            </ScrollLink>
 
-                            <Link
+                            <ScrollLink
                                 to="services"
                                 spy={true}
                                 smooth={true}
@@ -271,15 +271,15 @@ const Navbar = () => {
                             >
                                 <GiScissors className="mb-2 text-2xl" />
                                 Services
-                            </Link>
+                            </ScrollLink>
 
-                            <Link className='flex flex-col items-center bg-pink-400 hover:bg-pink-500 text-white px-8 py-4 lg:px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer font-[Poppins] font-semibold text-lg'
+                            <ScrollLink className='flex flex-col items-center bg-pink-400 hover:bg-pink-500 text-white px-8 py-4 lg:px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer font-[Poppins] font-semibold text-lg'
                                 onClick={() => setIsMenuOpen(false)}
                                 to='contacts' spy={true} smooth={true}
                             >
                                 <FiCalendar className="mb-2 text-2xl" />
                                 Book Appointment
-                            </Link>
+                            </ScrollLink>
                         </div>
                     </div>
                 )}
