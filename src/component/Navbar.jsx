@@ -8,13 +8,20 @@ import { IoIosNotifications } from "react-icons/io";
 import fetchEmployeeCount from './FetchEmployeeCount';
 
 const Navbar = () => {
-    const [navShadow, setNavShadow] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [bookingList, setBookingList] = useState([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [employeeCount, setEmployeeCount] = useState(0); // State to store the employee count
     const [notifications, setNotifications] = useState([]);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [navbarColor, setNavbarColor] = useState('bg-green-500'); // fallback default
+
+    useEffect(() => {
+        const savedColor = localStorage.getItem('navbarColor');
+        if (savedColor) {
+            setNavbarColor(savedColor);
+        }
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -83,7 +90,7 @@ const Navbar = () => {
 
             <div className='fixed w-full z-50 transition-all duration-500'>
                 {/*BG*/}
-                <div className={`bg-white backdrop-blur-2xl ${navShadow ? 'shadow-xl' : 'shadow-md'}`}>
+                <div className={`${navbarColor} backdrop-blur-2xl `}>
                     <nav className="border-b border-pink-400/20">
                         <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between relative">
                             {/* Logo */}
