@@ -51,7 +51,9 @@ const Contact = () => {
         );
     };
 
-    const handleSubmit = (e) => {
+    const url =  "http://localhost:3000/add/service"
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length) {
@@ -61,23 +63,44 @@ const Contact = () => {
         setErrors({});
         setIsSubmitting(true);
 
-        const message = `Name: ${name}%0APhone: ${phone}%0AServices: ${selectedServices.join(', ')}%0ADate: ${date}%0ATime: ${time}`;
-        setTimeout(() => {
-            window.open(`https://wa.me/+916201204954?text=${message}`, '_blank');
-            
-            // Dispatch a custom event for navbar update
-            window.dispatchEvent(new Event("bookingSubmitted"));
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('date', date);
+        formData.append('time', time);
+        formData.append('selectedServices', JSON.stringify(selectedServices)); // stringified array
 
-            // Add notification after successful booking
+        try {
+            const response = await fetch("http://localhost:3000/add/service", {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    
+            const result = await response.json();
+            console.log("Booking submitted:", result);
+    
+            // Continue with notification + WhatsApp
+            // const message = `Name: ${name}%0APhone: ${phone}%0AServices: ${selectedServices.join(', ')}%0ADate: ${date}%0ATime: ${time}`;
+            // window.open(`https://wa.me/+916201204954?text=${message}`, '_blank');
+    
+            // window.dispatchEvent(new Event("bookingSubmitted"));
             setNotification(prev => [...prev, 'Your booking was successful!']);
-
+    
+            // Reset form
             setName('');
             setPhone('');
             setSelectedServices([]);
             setDate('');
             setTime('');
             setIsSubmitting(false);
-        }, 2000);
+    
+        } catch (error) {
+            console.error('Booking failed:', error.message);
+            setNotification(prev => [...prev, 'Booking failed. Please try again.']);
+            setIsSubmitting(false);
+        }
     };
 
     return (
