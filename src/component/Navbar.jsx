@@ -200,7 +200,7 @@ const Navbar = () => {
                             </div>
 
                             {/* MOBILE MENU TOGGLE */}
-                            <div className="md:hidden">                                 <button
+                            <div className="md:hidden"><button
                                 onClick={() => setIsMenuOpen(true)}
                                 className="text-gray-800 hover:text-pink-700 transition-colors duration-300"
                             >
